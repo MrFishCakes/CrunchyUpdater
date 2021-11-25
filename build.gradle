@@ -1,0 +1,41 @@
+plugins {
+    id 'groovy'
+    id 'java'
+    id 'maven-publish'
+    id 'java-gradle-plugin'
+    id 'com.gradle.plugin-publish' version '0.16.0'
+}
+
+group 'dev.mrfishcakes'
+version '1.0.0'
+
+pluginBundle {
+    website = "https://mrfishcakes.dev"
+    vcsUrl = "https://github.com/MrFishCakes/CrunchyUpdater"
+    tags = ['paper', 'github', 'upstream', 'tracker']
+}
+
+gradlePlugin {
+    plugins {
+        crunchyUpdater {
+            id = 'dev.mrfishcakes.crunchyupdater'
+            displayName = 'Crunchy Updater'
+            description = 'Get commit changes between two hashes on GitHub'
+            implementationClass = 'dev.mrfishcakes.crunchyupdater.CrunchyUpdaterPlugin'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.codehaus.groovy:groovy-all:3.0.7'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
